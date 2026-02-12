@@ -11,14 +11,14 @@ import AttendancePage from './pages/Attendance/AttendancePage';
 import EmployeesPage from './pages/Employees/EmployeesPage';
 import LeavePage from './pages/Leave/LeavePage';
 import SettingsPage from './pages/Settings/SettingsPage';
-import AuthLayout from './Layouts/AuthLayout';
-import Register from './pages/Auth/Register';
+import ProtectedRoute from './ProtectedRoute';
+
 
 function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <DashboardLayout />,
+      element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
       children: [
         {
           path: "/",
@@ -52,17 +52,7 @@ function App() {
     },
     {
       path: "/login",
-      element: <AuthLayout />,
-      children: [
-        {
-          path  : "/login",
-          element: <Login />, 
-        },
-        {
-          path  : "/register",
-          element: <Register />,
-        }
-      ]
+      element: <Login />,
     },
     {
       path: "*",
